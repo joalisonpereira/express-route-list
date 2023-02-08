@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts",
-    "build": "tsup",
+    "build": "tsup src",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "npx eslint src --fix",
@@ -17,6 +17,7 @@
     "express",
     "express3",
     "express4",
+    "express5",
     "routes",
     "list",
     "log",
@@ -25,6 +26,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/joalisonpereira/express-print-routes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joalisonpereira/express-print-routes/issues"
   },
   "author": "joalisonpereira",
   "license": "ISC",
@@ -45,6 +49,9 @@
     "tsup": "^6.6.0",
     "tsx": "^3.12.3",
     "typescript": "^4.9.5",
-    "vitest": "^0.28.4"
+    "vitest": "^0.28.4",
+    "express3": "npm:express@^3.13.0",
+    "express4": "npm:express@^4.17.0",
+    "express5": "npm:express@^5.0.0-alpha.8"
   }
 }
