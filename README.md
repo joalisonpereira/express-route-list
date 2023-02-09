@@ -6,61 +6,48 @@
 
 [license-url]: https://opensource.org/licenses/MIT
 
+## Install
+
+```
+yarn add -D express-print-routes
+```
+
 ## Usage
 
-1. Install express-print-routes in your project or global
+# Add this config in your package.json
 
-   _Project_ (in your project folder):
+```json
+"scripts": {
+  "test:coverage": "npm test -- --coverage",
+  "test:badges": "npm run test:coverage  && jest-coverage-badges"
+}
+```
 
-   `npm install -D express-print-routes`
+# Export your app config (in the end of file)
 
-   or
+```js
+//server.js
 
-   `yarn add express-print-routes`
+export { app };
+```
 
-2. Configure Jest (in `package.json`):
+# Pass your _app_ to the _configure_ function
 
-   _(optional: "text" and "lcov")_
+```js
+//express-print-routes.js
+import { configure } from 'express-print-routes';
+import { app } from './server';
 
-   ```json
-   "jest": {
-     "coverageReporters": [
-       "json-summary",
-       "text",
-       "lcov"
-     ]
-   }
-   ```
+const config = {};
 
-   If you installed in your project, you can create a script to run it, for example:
+module.exports = configure(app, config);
+```
 
-   ```json
-   "scripts": {
-     "test:coverage": "npm test -- --coverage",
-     "test:badges": "npm run test:coverage  && express-print-routes"
-   }
-   ```
+# Execute
 
-3. Run `npm test -- --coverage`
-
-4. Run `express-print-routes` (or just run: `npm run test:badges`)
-
-   Resulting in badges:
-
-   - `./coverage/badge-statements.svg`
-   - `./coverage/badge-lines.svg`
-   - `./coverage/badge-functions.svg`
-   - `./coverage/badge-branches.svg`
-
-#### CLI Options
-
-- **input** [default: ./coverage/coverage-summary.json] - the file (and its path) of the summary json that contains the coverage data
-- **output** [default: ./coverage] - the path to the directory where the svg files will be placed after download. If path doesn't exist it will be created.
-
-**Example**:
-`$ express-print-routes --input "./cov" --output "./badges"`
-
-After this you can add into Github readme (for example) :smiley:
+```
+yarn run route:list
+```
 
 ## Why use this package?
 
@@ -69,3 +56,7 @@ This package provides a quick way to easily visualize your application's routes.
 ## Author
 
 © 2023 - [Joalison Pereira](https://joalisonpereira.github.io/)
+
+```
+
+```
