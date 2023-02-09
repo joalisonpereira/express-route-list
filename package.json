@@ -8,7 +8,7 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsup",
     "test": "vitest",
-    "test:coverage": "vitest run --coverage",
+    "test:coverage": "vitest run --coverage && jest-coverage-badges -o --output './docs'",
     "lint": "npx eslint src --fix",
     "check-types": "tsc --noemit",
     "prepare": "husky install"
@@ -48,6 +48,7 @@
     "express4": "npm:express@^4.17.0",
     "express5": "npm:express@^5.0.0-alpha.8",
     "husky": "^8.0.3",
+    "jest-coverage-badges": "^1.1.2",
     "lint-staged": "^13.1.1",
     "prettier": "^2.8.4",
     "tsup": "^6.6.0",
