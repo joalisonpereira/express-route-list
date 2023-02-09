@@ -4,7 +4,7 @@ import path from 'node:path';
 export default defineConfig({
   test: {
     coverage: {
-      reporter: ['json-summary', 'lcov', 'text']
+      reporter: ['json-summary', 'lcov', 'text', 'html']
     }
   },
   resolve: {

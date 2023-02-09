@@ -105,7 +105,7 @@ describe('Express 5', () => {
 
     app.get('/test', handler);
 
-    configure(app);
+    configure(app, { showIndex: false, prefix: 'api/' });
 
     expect(addRow).toHaveBeenCalledTimes(1);
 
