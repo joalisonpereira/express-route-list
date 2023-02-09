@@ -51,7 +51,8 @@ module.exports = {
 yarn run route:list
 ```
 
-Output
+## Output
+
 ![](./docs/output.png)
 
 ## Why use this package?
