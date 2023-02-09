@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
-    "build": "tsup src",
+    "build": "tsup",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "npx eslint src --fix",
