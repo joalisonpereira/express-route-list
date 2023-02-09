@@ -38,7 +38,7 @@ Pass your _app_ to the _configure_ function in config file
 import { configure } from 'express-print-routes';
 import { app } from './server';
 
-const config = {};
+const config = { showIndex: true, prefix: '' }; //Default
 
 module.exports = configure(app, config);
 ```
