@@ -14,7 +14,7 @@ yarn add -D express-print-routes
 
 ## Usage
 
-# Add this config in your package.json
+Add this config in your package.json
 
 ```json
 "scripts": {
