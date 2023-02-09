@@ -31,7 +31,7 @@
     "url": "https://github.com/joalisonpereira/express-print-routes/issues"
   },
   "author": "joalisonpereira",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",

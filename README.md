@@ -4,42 +4,19 @@
 
 ![](./docs/badge-statements.svg) ![](./docs/badge-functions.svg) ![](./docs/badge-lines.svg) ![](./docs/badge-branches.svg)
 
-[![License][license-image]][license-url]
-[![npm](https://img.shields.io/npm/dw/jest-coverage-badges.svg)](https://www.npmjs.com/package/jest-coverage-badges)
-
 [license-url]: https://opensource.org/licenses/MIT
-[license-image]: https://img.shields.io/npm/l/make-coverage-badge.svg
-
-Creates a group of code coverage badges like the following:
-
-![Coverage badge gree][coverage-badge-green] ![Coverage badge gree][coverage-badge-yellow] ![Coverage badge gree][coverage-badge-red]
-
-[coverage-badge-green]: https://img.shields.io/badge/Coverage-100%25-brightgreen.svg
-[coverage-badge-yellow]: https://img.shields.io/badge/Coverage-100%25-yellow.svg
-[coverage-badge-red]: https://img.shields.io/badge/Coverage-100%25-red.svg
-
-Currently just reads from Istanbul's JSON summary reporter and downloads a badge from https://shields.io/ for each jest coverage type (`statement`, `branch`, `functions`, `lines`). Like this:
-
-![Coverage lines](https://img.shields.io/badge/Coverage:lines-100-green.svg)
-![Coverage functions](https://img.shields.io/badge/Coverage:functions-100-green.svg)
-![Coverage branches](https://img.shields.io/badge/Coverage:branches-100-green.svg)
-![Coverage statements](https://img.shields.io/badge/Coverage:statements-100-green.svg)
-
-_This package is an extension of [make-coverage-badge], but this one creates all the types of coverage._
-
-[make-coverage-badge]: https://www.npmjs.com/package/make-coverage-badge
 
 ## Usage
 
-1. Install jest-coverage-badges in your project or global
+1. Install express-print-routes in your project or global
 
    _Project_ (in your project folder):
 
-   `npm install --save jest-coverage-badges`
+   `npm install -D express-print-routes`
 
-   _Global_:
+   or
 
-   `npm install --global jest-coverage-badges`
+   `yarn add express-print-routes`
 
 2. Configure Jest (in `package.json`):
 
@@ -60,13 +37,13 @@ _This package is an extension of [make-coverage-badge], but this one creates all
    ```json
    "scripts": {
      "test:coverage": "npm test -- --coverage",
-     "test:badges": "npm run test:coverage  && jest-coverage-badges"
+     "test:badges": "npm run test:coverage  && express-print-routes"
    }
    ```
 
 3. Run `npm test -- --coverage`
 
-4. Run `jest-coverage-badges` (or just run: `npm run test:badges`)
+4. Run `express-print-routes` (or just run: `npm run test:badges`)
 
    Resulting in badges:
 
@@ -81,14 +58,14 @@ _This package is an extension of [make-coverage-badge], but this one creates all
 - **output** [default: ./coverage] - the path to the directory where the svg files will be placed after download. If path doesn't exist it will be created.
 
 **Example**:
-`$ jest-coverage-badges --input "./cov" --output "./badges"`
+`$ express-print-routes --input "./cov" --output "./badges"`
 
 After this you can add into Github readme (for example) :smiley:
 
 ## Why use this package?
 
-We have great companies like coveralls and codecov, but it's paid for private repositories. If this package we can add badges in our readme by creating the badges (this can be run at your build, upload to a store and consume in the readme or the website).
+This package provides a quick way to easily visualize your application's routes.
 
 ## Author
 
-© 2023 **[Author]** Joalison Pereira <git@pamepeixinho.com> (https://joalisonpereira.github.io/)
+© 2023 - [Joalison Pereira](https://joalisonpereira.github.io/)
