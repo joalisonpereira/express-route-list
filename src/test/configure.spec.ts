@@ -2,7 +2,7 @@ import { describe, it, vi, expect, afterEach } from 'vitest';
 import express3 from 'express3';
 import express4 from 'express4';
 import express5 from 'express5';
-import { configure } from 'src';
+import { configure } from 'src/configure';
 import ConsoleTablePrint from 'console-table-printer';
 
 const handler = (_: any, res: any): void => res.send('handled');
