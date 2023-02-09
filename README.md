@@ -56,7 +56,3 @@ This package provides a quick way to easily visualize your application's routes.
 ## Author
 
 © 2023 - [Joalison Pereira](https://joalisonpereira.github.io/)
-
-```
-
-```
