@@ -1,6 +1,6 @@
 {
   "name": "express-route-list",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "List routes for Express Framework",
   "main": "dist/src/index.js",
   "scripts": {
