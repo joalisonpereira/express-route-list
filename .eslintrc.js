@@ -10,5 +10,10 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json'
   },
-  rules: {}
+  rules: {
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/consistent-type-assertions': 'off',
+    '@typescript-eslint/consistent-type-definitions': 'off'
+  }
 };
