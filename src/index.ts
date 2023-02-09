@@ -20,12 +20,9 @@ async function run(): Promise<void> {
     configure(app, config);
   } catch (error: any) {
     if (!(await fileExists(configPath))) {
-      const templateFile = await fs.readFile(
-        `${rootDir}/src/templates/config.txt`,
-        {
-          encoding: 'utf-8'
-        }
-      );
+      const templateFile = await fs.readFile('./src/templates/config.txt', {
+        encoding: 'utf-8'
+      });
 
       await fs.writeFile(CONFIG_FILE_NAME, templateFile, {
         encoding: 'utf-8'
