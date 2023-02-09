@@ -26,7 +26,7 @@ async function run(): Promise<void> {
 
           module.exports = {
             app,
-            config: { showIndex: false, prefix: '' } // Default
+            config: { showIndex: true, prefix: '' } // Default
           };
         `,
         { encoding: 'utf-8' }
