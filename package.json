@@ -1,5 +1,5 @@
 {
-  "name": "express-print-routes",
+  "name": "express-route-list",
   "version": "1.0.0",
   "description": "List routes for Express Framework",
   "main": "dist/src/index.js",
@@ -25,10 +25,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/joalisonpereira/express-print-routes.git"
+    "url": "https://github.com/joalisonpereira/express-route-list.git"
   },
   "bugs": {
-    "url": "https://github.com/joalisonpereira/express-print-routes/issues"
+    "url": "https://github.com/joalisonpereira/express-route-list/issues"
   },
   "author": "joalisonpereira",
   "license": "MIT",

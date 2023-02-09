@@ -9,7 +9,7 @@
 ## Install
 
 ```
-yarn add -D express-print-routes
+yarn add -D express-route-list
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ Add this config in your package.json
 
 ```json
 "scripts": {
-  "route:list": "express-print-routes"
+  "route:list": "express-route-list"
 }
 ```
 
@@ -33,9 +33,9 @@ export { app };
 Pass your _app_ to the _configure_ function in config file
 
 ```js
-//express-print-routes.config.js
+//express-route-list.config.js
 
-import { configure } from 'express-print-routes';
+import { configure } from 'express-route-list';
 import { app } from './server';
 
 const config = { showIndex: true, prefix: '' }; //Default
