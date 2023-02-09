@@ -1,25 +1,25 @@
 // import path from 'node:path';
-import express from 'express3';
+// import express from 'express3';
 import { Table } from 'console-table-printer';
 import chalk from 'chalk';
 import { getRoutes } from './utils';
 import { Column } from './types';
 
-const testApp = express();
+// const testApp = express();
 
-testApp.get('/status', () => null);
+// testApp.get('/status', () => null);
 
-testApp.post('/statusx/:id', () => null);
+// testApp.post('/statusx/:id', () => null);
 
-testApp.put('/statusdd/:i', () => null);
+// testApp.put('/statusdd/:i', () => null);
 
-testApp.delete('/statuxsdd/:i', () => null);
+// testApp.delete('/statuxsdd/:i', () => null);
 
-testApp.patch('/statusddd/:i', () => null);
+// testApp.patch('/statusddd/:i', () => null);
 
-testApp.all('/all/:i', () => null);
+// testApp.all('/all/:i', () => null);
 
-testApp.all('/all', () => null);
+// testApp.all('/all', () => null);
 
 // const router = express.Router();
 
@@ -28,7 +28,7 @@ testApp.all('/all', () => null);
 //   next();
 // });
 
-// router.get('/', function (req, res) {
+// router.all('/', function (req, res) {
 //   res.send('Birds home page');
 // });
 
@@ -38,7 +38,7 @@ testApp.all('/all', () => null);
 
 // testApp.use(router);
 
-export default function configure(app: any): void {
+export function configure(app: any): void {
   const table = new Table({
     columns: [
       {
@@ -67,4 +67,4 @@ export default function configure(app: any): void {
   table.printTable();
 }
 
-configure(testApp);
+// configure(testApp);

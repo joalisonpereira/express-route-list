@@ -1,4 +1,4 @@
-import { ALL_METHODS_COUNT, type Route } from './types';
+import { ALL_METHODS_COUNT, Methods, type Route } from './types';
 
 export function pick<T = any>(obj: T, keys: Array<keyof T>): T {
   const ret = {} as T;
@@ -40,7 +40,7 @@ export function getRoutes(app: any): Route[] {
     // Add 'all' treated routes
     const allMethods = pathsFromAllMethods.map((item) => ({
       path: item,
-      method: 'all'
+      method: Methods.all
     }));
 
     routes = routes.concat(allMethods);
@@ -58,7 +58,10 @@ export function getRoutes(app: any): Route[] {
 
     routes = routes.map((item: any) => ({
       path: item.path,
-      method: item.stack.length === 1 ? item.stack[0].method : 'all'
+      method:
+        item.stack.length === 1
+          ? item.stack[0].method ?? Methods.all
+          : Methods.all
     }));
   }
 
