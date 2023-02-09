@@ -61,6 +61,6 @@
     "console-table-printer": "^2.11.1"
   },
   "files": [
-    "./dist"
+    "dist"
   ]
 }
