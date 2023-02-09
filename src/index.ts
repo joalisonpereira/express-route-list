@@ -12,7 +12,8 @@ async function run(): Promise<void> {
   const configPath = `${rootDir}/${CONFIG_FILE_NAME}`;
 
   try {
-    const rootConfig = await import(configPath);
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const rootConfig = require(configPath);
 
     const { app, config } = rootConfig.default;
 
