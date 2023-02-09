@@ -1,8 +1,6 @@
+import { app } from './server';
 
-          import { app } from './server';
-
-          module.exports = {
-            app,
-            config: { showIndex: false, prefix: '' } // Default
-          };
-        
+module.exports = {
+  app,
+  config: { showIndex: false, prefix: '' } // Default
+};

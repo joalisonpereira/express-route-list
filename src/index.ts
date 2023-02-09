@@ -22,7 +22,7 @@ async function run(): Promise<void> {
       await fs.writeFile(
         CONFIG_FILE_NAME,
         `
-          import { app } from './server';
+          const app = require('./server');
 
           module.exports = {
             app,
@@ -32,11 +32,9 @@ async function run(): Promise<void> {
         { encoding: 'utf-8' }
       );
 
-      console.info(chalk.cyan(`Config generated in ${configPath}\n`));
+      console.info(chalk.cyan(`${CONFIG_FILE_NAME} generated\n`));
 
-      console.info(
-        chalk.yellowBright('OBS: Now you need import your app in config file')
-      );
+      console.info(chalk.yellowBright('Now you need import your app'));
     } else {
       console.error(chalk.red(error.message) + '\n');
 
