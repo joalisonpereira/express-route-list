@@ -19,16 +19,18 @@ async function run(): Promise<void> {
     configure(app, config);
   } catch (error: any) {
     if (!(await fileExists(configPath))) {
-      const templateFile = await fs.readFile(
-        path.resolve(__dirname, './templates/config.txt'),
-        {
-          encoding: 'utf-8'
-        }
-      );
+      await fs.writeFile(
+        CONFIG_FILE_NAME,
+        `
+          import { app } from './server';
 
-      await fs.writeFile(CONFIG_FILE_NAME, templateFile, {
-        encoding: 'utf-8'
-      });
+          module.exports = {
+            app,
+            config: { showIndex: false, prefix: '' } // Default
+          };
+        `,
+        { encoding: 'utf-8' }
+      );
 
       console.info(chalk.cyan(`Config generated in ${configPath}\n`));
 
