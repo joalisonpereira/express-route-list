@@ -18,8 +18,7 @@ Add this config in your package.json
 
 ```json
 "scripts": {
-  "test:coverage": "npm test -- --coverage",
-  "test:badges": "npm run test:coverage  && jest-coverage-badges"
+  "route:list": "express-print-routes"
 }
 ```
 
@@ -31,10 +30,11 @@ Export your app config (in the end of file)
 export { app };
 ```
 
-Pass your _app_ to the _configure_ function
+Pass your _app_ to the _configure_ function in config file
 
 ```js
-//express-print-routes.js
+//express-print-routes.config.js
+
 import { configure } from 'express-print-routes';
 import { app } from './server';
 
@@ -43,7 +43,7 @@ const config = {};
 module.exports = configure(app, config);
 ```
 
-Execute
+## Execute
 
 ```
 yarn run route:list
