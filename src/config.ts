@@ -24,3 +24,5 @@ export interface Config {
 }
 
 export const ALL_METHODS_COUNT = 34;
+
+export const CONFIG_FILE_NAME = 'route-list.config.js';

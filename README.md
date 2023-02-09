@@ -35,12 +35,12 @@ Pass your _app_ to the _configure_ function in config file
 ```js
 //express-route-list.config.js
 
-import { configure } from 'express-route-list';
 import { app } from './server';
 
-const config = { showIndex: true, prefix: '' }; //Default
-
-module.exports = configure(app, config);
+module.exports = {
+  app,
+  config: { showIndex: false, prefix: '' } // Default
+};
 ```
 
 ## Execute

@@ -2,8 +2,9 @@ import { describe, it, expect } from 'vitest';
 import express3 from 'express3';
 import express4 from 'express4';
 import express5 from 'express5';
-import { getRoutes, pick } from 'src/utils';
-import { Methods } from 'src/types';
+import path from 'node:path';
+import { fileExists, getRoutes, pick } from 'src/utils';
+import { Methods } from 'src/config';
 
 const handler = (_: any, res: any): void => res.send('handled');
 
@@ -56,5 +57,19 @@ describe('getRoutes', () => {
     const routes = getRoutes(app);
 
     expect(routes).toHaveLength(0);
+  });
+});
+
+describe('fileExists', () => {
+  it('should check if fileExists and return false', async () => {
+    const result = await fileExists(`./${Math.random()}.${Math.random()}`);
+
+    expect(result).toBe(false);
+  });
+
+  it('should check if fileExists and return true', async () => {
+    const result = await fileExists(`${path.resolve() + '/package.json'}`);
+
+    expect(result).toBe(true);
   });
 });

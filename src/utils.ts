@@ -1,4 +1,5 @@
-import { ALL_METHODS_COUNT, Methods, type Route } from './types';
+import { ALL_METHODS_COUNT, Methods, type Route } from './config';
+import fs from 'node:fs/promises';
 
 export function pick<T = any>(obj: T, keys: Array<keyof T>): T {
   const ret = {} as T;
@@ -68,4 +69,14 @@ export function getRoutes(app: any): Route[] {
   routes = routes.map((item: any) => pick<Route>(item, ['path', 'method']));
 
   return routes;
+}
+
+export async function fileExists(path: string): Promise<boolean> {
+  try {
+    await fs.stat(path);
+
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
