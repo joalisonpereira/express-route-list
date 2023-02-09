@@ -12,7 +12,6 @@ async function run(): Promise<void> {
   const configPath = `${rootDir}/${CONFIG_FILE_NAME}`;
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const rootConfig = require(configPath);
 
     const { app, config } = rootConfig.default;
@@ -20,9 +19,12 @@ async function run(): Promise<void> {
     configure(app, config);
   } catch (error: any) {
     if (!(await fileExists(configPath))) {
-      const templateFile = await fs.readFile('./src/templates/config.txt', {
-        encoding: 'utf-8'
-      });
+      const templateFile = await fs.readFile(
+        path.resolve(__dirname, './templates/config.txt'),
+        {
+          encoding: 'utf-8'
+        }
+      );
 
       await fs.writeFile(CONFIG_FILE_NAME, templateFile, {
         encoding: 'utf-8'

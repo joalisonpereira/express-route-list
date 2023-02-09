@@ -1,12 +1,12 @@
 {
   "name": "express-route-list",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "List routes for Express Framework",
-  "bin": "dist/bin.js",
-  "main": "dist/index.js",
+  "bin": "index.js",
+  "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "tsx src/index.ts",
+    "dev": "tsx watch src",
     "build": "tsup",
     "test": "vitest",
     "test:coverage": "vitest run --coverage && jest-coverage-badges -o --output './docs'",
