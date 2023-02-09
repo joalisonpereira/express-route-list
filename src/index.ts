@@ -1,36 +1,70 @@
 // import path from 'node:path';
-import express from 'express5';
+import express from 'express3';
+import { Table } from 'console-table-printer';
+import chalk from 'chalk';
 import { getRoutes } from './utils';
+import { Column } from './types';
 
-const appExpress = express();
+const testApp = express();
 
-appExpress.get('/status', () => null);
+testApp.get('/status', () => null);
 
-appExpress.post('/statusx/:id', () => null);
+testApp.post('/statusx/:id', () => null);
 
-appExpress.put('/statusdd/:i', () => null);
+testApp.put('/statusdd/:i', () => null);
+
+testApp.delete('/statuxsdd/:i', () => null);
+
+testApp.patch('/statusddd/:i', () => null);
+
+testApp.all('/all/:i', () => null);
+
+testApp.all('/all', () => null);
 
 // const router = express.Router();
 
-// middleware that is specific to this router
 // router.use((req, res, next) => {
 //   console.log('Time: ', Date.now());
 //   next();
 // });
 
-// // define the home page route
 // router.get('/', function (req, res) {
 //   res.send('Birds home page');
 // });
-// // define the about route
+
 // router.put('/about', function (req, res) {
 //   res.send('About birds');
 // });
 
-// appExpress.use(router);
+// testApp.use(router);
 
 export default function configure(app: any): void {
-  const routes = getRoutes(app);
+  const table = new Table({
+    columns: [
+      {
+        name: Column.Index,
+        title: chalk.cyan(Column.Index)
+      },
+      {
+        name: Column.Route,
+        title: chalk.cyan(Column.Route)
+      },
+      {
+        name: Column.Method,
+        title: chalk.cyan(Column.Method)
+      }
+    ]
+  });
 
-  console.log(routes);
+  const routes = getRoutes(app).map((item, index) => ({
+    [Column.Index]: index,
+    [Column.Route]: item.path,
+    [Column.Method]: item.method.toUpperCase()
+  }));
+
+  routes.forEach((item) => table.addRow(item));
+
+  table.printTable();
 }
+
+configure(testApp);
