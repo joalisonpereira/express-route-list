@@ -23,7 +23,7 @@ yarn add -D express-print-routes
 }
 ```
 
-# Export your app config (in the end of file)
+Export your app config (in the end of file)
 
 ```js
 //server.js
@@ -31,7 +31,7 @@ yarn add -D express-print-routes
 export { app };
 ```
 
-# Pass your _app_ to the _configure_ function
+Pass your _app_ to the _configure_ function
 
 ```js
 //express-print-routes.js
@@ -43,7 +43,7 @@ const config = {};
 module.exports = configure(app, config);
 ```
 
-# Execute
+Execute
 
 ```
 yarn run route:list
