@@ -33,7 +33,7 @@ export { app };
 Pass your _app_ to the _configure_ function in config file
 
 ```js
-//express-route-list.config.js
+//route-list.config.js
 
 import { app } from './server';
 
