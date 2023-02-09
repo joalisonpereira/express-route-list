@@ -1,6 +1,6 @@
-import { app } from './server';
+import app from './src/test/mocks/app';
 
-module.exports = {
+export default {
   app,
-  config: { showIndex: false, prefix: '' } // Default
+  config: { showIndex: true, prefix: '' } // Default
 };

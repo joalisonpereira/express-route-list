@@ -51,6 +51,9 @@ module.exports = {
 yarn run route:list
 ```
 
+Output
+![](./docs/output.png)
+
 ## Why use this package?
 
 This package provides a quick way to easily visualize your application's routes.
