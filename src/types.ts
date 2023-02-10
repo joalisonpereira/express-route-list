@@ -25,4 +25,21 @@ export interface Config {
 
 export const ALL_METHODS_COUNT = 34;
 
-export const CONFIG_FILE_NAME = 'route-list.config.js';
+export const CONFIG_TEMPLATES = {
+  js: `
+    const app = require('./replace-with-app-path');
+
+    module.exports = {
+      app,
+      config: { showIndex: true, prefix: '' } // Default
+    };
+  `,
+  ts: `
+    import app from './replace-with-app-path';
+
+    export default {
+      app,
+      config: { showIndex: true, prefix: '' } // Default
+    };
+  `
+};

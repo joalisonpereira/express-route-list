@@ -3,7 +3,14 @@ import express3 from 'express3';
 import express4 from 'express4';
 import express5 from 'express5';
 import path from 'node:path';
-import { fileExists, getRoutes, pick } from 'src/utils';
+import {
+  fileExists,
+  getConfigAbsoutePath,
+  getConfigExists,
+  getConfigFilename,
+  getRoutes,
+  pick
+} from 'src/utils';
 import { Methods } from 'src/types';
 
 const handler = (_: any, res: any): void => res.send('handled');
@@ -71,5 +78,41 @@ describe('fileExists', () => {
     const result = await fileExists(`${path.resolve() + '/package.json'}`);
 
     expect(result).toBe(true);
+  });
+});
+
+describe('getConfigFilename', () => {
+  it('should return name for js config file', async () => {
+    const result = getConfigFilename(false);
+
+    expect(result.endsWith('.js')).toBe(true);
+  });
+
+  it('should return name for ts config file', async () => {
+    const result = getConfigFilename(true);
+
+    expect(result.endsWith('.ts')).toBe(true);
+  });
+});
+
+describe('getConfigAbsoutePath', () => {
+  it('should return absolute path for js config file', async () => {
+    const result = getConfigAbsoutePath(false);
+
+    expect(result.endsWith('.js')).toBe(true);
+  });
+
+  it('should return absolute path for ts config file', async () => {
+    const result = getConfigAbsoutePath(true);
+
+    expect(result.endsWith('.ts')).toBe(true);
+  });
+});
+
+describe('getConfigAbsoutePath', () => {
+  it('should return if config file exists', async () => {
+    const result = await getConfigExists();
+
+    expect(result).toBe(false);
   });
 });

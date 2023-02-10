@@ -1,5 +1,6 @@
 import { ALL_METHODS_COUNT, Methods, type Route } from './types';
 import fs from 'node:fs/promises';
+import path from 'node:path';
 
 export function pick<T = any>(obj: T, keys: Array<keyof T>): T {
   const ret = {} as T;
@@ -79,4 +80,21 @@ export async function fileExists(path: string): Promise<boolean> {
   } catch (error) {
     return false;
   }
+}
+
+export function getConfigFilename(isTs: boolean): string {
+  return 'route-list.config.[ext]'.replace('[ext]', isTs ? 'ts' : 'js');
+}
+
+export function getConfigAbsoutePath(isTs: boolean): string {
+  return path.resolve() + '/' + getConfigFilename(isTs);
+}
+
+export async function getConfigExists(): Promise<boolean> {
+  const [configJs, configTs] = await Promise.all([
+    fileExists(getConfigAbsoutePath(false)),
+    fileExists(getConfigAbsoutePath(true))
+  ]);
+
+  return configJs || configTs;
 }

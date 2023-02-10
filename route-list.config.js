@@ -1,6 +1,8 @@
-const app = require('./src/test/mocks/app');
 
-module.exports = {
-  app,
-  config: { showIndex: true, prefix: '' } // Default
-};
+          const app = require('./server');
+
+          module.exports = {
+            app,
+            config: { showIndex: true, prefix: '' } // Default
+          };
+        

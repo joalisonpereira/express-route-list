@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import { getRoutes } from './utils';
 import { Column, type Config } from './types';
 
-export function configure(
+export function init(
   app: any,
   config: Config = { showIndex: true, prefix: '' }
 ): void {

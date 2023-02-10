@@ -1,5 +1,3 @@
-## Working in Progress 🚧
-
 # Express Route List
 
 > List routes for Express Framework
@@ -10,21 +8,19 @@
 
 ## Install
 
-```
+```bash
 yarn add -D express-route-list
 ```
 
 ## Usage
 
-Add this config in your package.json
+Use the follow command to generate the config file.
 
-```json
-"scripts": {
-  "route:list": "express-route-list"
-}
+```bash
+yarn run route-list configure
 ```
 
-Export your app config (in the end of file)
+Export the app (regardless of where you are declaring it)
 
 ```js
 //server.js
@@ -37,7 +33,7 @@ Pass your _app_ to the _configure_ function in config file
 ```js
 //route-list.config.js
 
-import { app } from './server';
+import { app } from './replace-with-app-path';
 
 module.exports = {
   app,
@@ -47,8 +43,8 @@ module.exports = {
 
 ## Execute
 
-```
-yarn run route:list
+```bash
+yarn run route-list
 ```
 
 ## Output

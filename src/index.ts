@@ -1,52 +1,107 @@
 #!/usr/bin/env node
 import fs from 'node:fs/promises';
-import path from 'node:path';
 import chalk from 'chalk';
-import { CONFIG_FILE_NAME } from './types';
-import { configure } from './configure';
-import { fileExists } from './utils';
-export * from './configure';
+import prompts from 'prompts';
+import { CONFIG_TEMPLATES } from './types';
+import { init } from './init';
+import { getConfigAbsoutePath, getConfigExists } from './utils';
+
+async function configure(): Promise<void> {
+  if (await getConfigExists()) {
+    console.info(
+      chalk.redBright('A configuration file already exists for your project.')
+    );
+
+    process.exit(1);
+  }
+
+  const { value: isTs } = await prompts({
+    type: 'toggle',
+    name: 'value',
+    message: 'Your project uses Typescript?',
+    initial: true,
+    active: 'Y',
+    inactive: 'n'
+  });
+
+  if (isTs === undefined) {
+    process.exit(1); // User not choose option
+  }
+
+  const configFilename = getConfigAbsoutePath(isTs);
+
+  await fs.writeFile(configFilename, CONFIG_TEMPLATES[isTs ? 'ts' : 'js'], {
+    encoding: 'utf-8'
+  });
+
+  console.info(chalk.greenBright(`Config file created.\n`));
+
+  console.info(
+    chalk.cyan(
+      `Please configure ${chalk.bold.whiteBright(
+        'app'
+      )} import in ${chalk.bold.whiteBright(configFilename)}`
+    )
+  );
+}
+
+function getConfig(): any {
+  try {
+    const configTsPath = getConfigAbsoutePath(true);
+
+    return require(configTsPath);
+  } catch (error) {
+    const configJsPath = getConfigAbsoutePath(false);
+
+    try {
+      return require(configJsPath);
+    } catch (error) {
+      return null;
+    }
+  }
+}
 
 async function run(): Promise<void> {
-  const rootDir = path.resolve();
-
-  const configPath = `${rootDir}/${CONFIG_FILE_NAME}`;
-
   try {
-    const rootConfig = require(configPath);
+    const option = process.argv[2];
 
-    const { app, config } = rootConfig;
+    if (option === 'configure') {
+      await configure();
 
-    configure(app, config);
-  } catch (error: any) {
-    if (!(await fileExists(configPath))) {
-      await fs.writeFile(
-        CONFIG_FILE_NAME,
-        `
-          const app = require('./server');
-
-          module.exports = {
-            app,
-            config: { showIndex: true, prefix: '' } // Default
-          };
-        `,
-        { encoding: 'utf-8' }
+      process.exit(1);
+    } else if (option !== undefined) {
+      console.info(
+        chalk.redBright(`${chalk.bold.redBright(option)} is an invalid option.`)
       );
 
-      console.info(chalk.cyan(`${CONFIG_FILE_NAME} generated\n`));
+      process.exit(1);
+    }
 
-      console.info(chalk.yellowBright('Now you need import your app'));
-    } else {
-      console.log(error);
+    const routeListConfig = getConfig();
 
-      console.error(chalk.red(error.message) + '\n');
-
+    if (!(await getConfigExists())) {
       console.info(
-        chalk.yellowBright(
-          'Did you remember to import the app in your config file?'
+        chalk.redBright(
+          `You do not have a valid configuration file, please use the ${chalk.bold.whiteBright(
+            'configure'
+          )} command.`
         )
       );
+
+      process.exit(1);
     }
+
+    const { app, config } = routeListConfig?.default ?? routeListConfig;
+
+    init(app, config);
+  } catch (error: any) {
+    console.info(chalk.redBright(`ERROR: ${error.message}`));
+
+    console.info(
+      chalk.yellowBright(
+        'Did you remember to import the app in your config file?'
+      )
+    );
   }
 }
 
