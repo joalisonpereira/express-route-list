@@ -1,12 +1,11 @@
 {
   "name": "express-route-list",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "List routes for Express Framework",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "bin": {
-    "express-route-list": "./dist/index.js"
+    "route:list": "./dist/index.js"
   },
   "files": [
     "dist",

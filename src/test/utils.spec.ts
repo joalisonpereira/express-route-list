@@ -4,7 +4,7 @@ import express4 from 'express4';
 import express5 from 'express5';
 import path from 'node:path';
 import { fileExists, getRoutes, pick } from 'src/utils';
-import { Methods } from 'src/config';
+import { Methods } from 'src/types';
 
 const handler = (_: any, res: any): void => res.send('handled');
 

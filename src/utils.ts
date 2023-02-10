@@ -1,4 +1,4 @@
-import { ALL_METHODS_COUNT, Methods, type Route } from './config';
+import { ALL_METHODS_COUNT, Methods, type Route } from './types';
 import fs from 'node:fs/promises';
 
 export function pick<T = any>(obj: T, keys: Array<keyof T>): T {

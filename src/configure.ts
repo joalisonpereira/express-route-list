@@ -1,7 +1,7 @@
 import { Table } from 'console-table-printer';
 import chalk from 'chalk';
 import { getRoutes } from './utils';
-import { Column, type Config } from './config';
+import { Column, type Config } from './types';
 
 export function configure(
   app: any,

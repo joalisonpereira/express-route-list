@@ -1,6 +1,6 @@
-import app from './src/test/mocks/app';
+const app = require('./src/mocks/app');
 
-export default {
+module.exports = {
   app,
   config: { showIndex: true, prefix: '' } // Default
 };

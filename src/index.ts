@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import chalk from 'chalk';
-import { CONFIG_FILE_NAME } from './config';
+import { CONFIG_FILE_NAME } from './types';
 import { configure } from './configure';
 import { fileExists } from './utils';
 export * from './configure';
@@ -14,7 +14,7 @@ async function run(): Promise<void> {
   try {
     const rootConfig = require(configPath);
 
-    const { app, config } = rootConfig.default;
+    const { app, config } = rootConfig;
 
     configure(app, config);
   } catch (error: any) {
@@ -36,6 +36,8 @@ async function run(): Promise<void> {
 
       console.info(chalk.yellowBright('Now you need import your app'));
     } else {
+      console.log(error);
+
       console.error(chalk.red(error.message) + '\n');
 
       console.info(
