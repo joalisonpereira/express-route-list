@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 import fs from 'node:fs/promises';
+import { execSync } from 'child_process';
 import chalk from 'chalk';
 import prompts from 'prompts';
+import path from 'node:path';
 import { CONFIG_TEMPLATES } from './types';
 import { init } from './init';
-import { getConfigAbsoutePath, getConfigExists } from './utils';
+import {
+  getConfigAbsoutePath,
+  getConfigExists,
+  getConfigFilename
+} from './utils';
+
+const ROOT = path.resolve();
 
 async function configure(): Promise<void> {
   if (await getConfigExists()) {
@@ -47,11 +55,22 @@ async function configure(): Promise<void> {
 
 function getConfig(): any {
   try {
-    const configTsPath = getConfigAbsoutePath(true);
+    const tscPath = path.join(ROOT, 'node_modules/.bin/tsc');
 
-    return require(configTsPath);
+    const buildPath = path.join(
+      ROOT,
+      'node_modules/express-route-list',
+      'exec-build'
+    );
+
+    execSync(
+      `${tscPath} --outDir ${buildPath} || echo "tsc compilation failed. Please resolve issues in your project." >&2`,
+      { cwd: ROOT }
+    );
+
+    return require(`${buildPath}/${getConfigFilename('js')}`);
   } catch (error) {
-    const configJsPath = getConfigAbsoutePath(false);
+    const configJsPath = getConfigAbsoutePath('js');
 
     try {
       return require(configJsPath);

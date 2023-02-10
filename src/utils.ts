@@ -82,18 +82,21 @@ export async function fileExists(path: string): Promise<boolean> {
   }
 }
 
-export function getConfigFilename(isTs: boolean): string {
-  return 'route-list.config.[ext]'.replace('[ext]', isTs ? 'ts' : 'js');
+export function getConfigFilename(type: 'js' | 'ts'): string {
+  return 'route-list.config.[ext]'.replace(
+    '[ext]',
+    type === 'ts' ? 'ts' : 'js'
+  );
 }
 
-export function getConfigAbsoutePath(isTs: boolean): string {
-  return path.resolve() + '/' + getConfigFilename(isTs);
+export function getConfigAbsoutePath(type: 'js' | 'ts'): string {
+  return path.resolve() + '/' + getConfigFilename(type);
 }
 
 export async function getConfigExists(): Promise<boolean> {
   const [configJs, configTs] = await Promise.all([
-    fileExists(getConfigAbsoutePath(false)),
-    fileExists(getConfigAbsoutePath(true))
+    fileExists(getConfigAbsoutePath('js')),
+    fileExists(getConfigAbsoutePath('ts'))
   ]);
 
   return configJs || configTs;

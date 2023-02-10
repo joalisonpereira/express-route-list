@@ -83,13 +83,13 @@ describe('fileExists', () => {
 
 describe('getConfigFilename', () => {
   it('should return name for js config file', async () => {
-    const result = getConfigFilename(false);
+    const result = getConfigFilename('js');
 
     expect(result.endsWith('.js')).toBe(true);
   });
 
   it('should return name for ts config file', async () => {
-    const result = getConfigFilename(true);
+    const result = getConfigFilename('ts');
 
     expect(result.endsWith('.ts')).toBe(true);
   });
@@ -97,13 +97,13 @@ describe('getConfigFilename', () => {
 
 describe('getConfigAbsoutePath', () => {
   it('should return absolute path for js config file', async () => {
-    const result = getConfigAbsoutePath(false);
+    const result = getConfigAbsoutePath('js');
 
     expect(result.endsWith('.js')).toBe(true);
   });
 
   it('should return absolute path for ts config file', async () => {
-    const result = getConfigAbsoutePath(true);
+    const result = getConfigAbsoutePath('ts');
 
     expect(result.endsWith('.ts')).toBe(true);
   });
