@@ -1,4 +1,4 @@
-const app = require('./src/mocks/app');
+const app = require('./src/test/mocks/app');
 
 module.exports = {
   app,

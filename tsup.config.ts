@@ -5,7 +5,7 @@ export default defineConfig({
     'src',
     '!src/**/*.spec.*',
     '!src/tests/**',
-    '!src/mocks/*.ts',
+    '!src/**/mocks/**',
     '!src/@types/**.d.ts'
   ],
   splitting: false,
