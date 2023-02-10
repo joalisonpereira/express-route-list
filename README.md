@@ -9,15 +9,15 @@
 ## Install
 
 ```bash
-yarn add -D express-route-list
+npm install -D express-route-list
 ```
 
-## Usage
+## Configuration
 
 Use the follow command to generate the config file.
 
 ```bash
-yarn run route-list configure
+npx route-list configure
 ```
 
 Export the app (regardless of where you are declaring it)
@@ -44,16 +44,16 @@ module.exports = {
 ## Execute
 
 ```bash
-yarn run route-list
+npx route-list
 ```
 
-## Output
+## Output Example
 
 ![](./docs/output.png)
 
 ## Why use this package?
 
-This package provides a quick way to easily visualize your application's routes.
+This package provides a quick way to easily visualize your application's routes, with a minimal configuration.
 
 ## Author
 

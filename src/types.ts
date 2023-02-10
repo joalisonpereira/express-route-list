@@ -31,7 +31,7 @@ export const CONFIG_TEMPLATES = {
 
     module.exports = {
       app,
-      config: { showIndex: true, prefix: '' } // Default
+      config: { showIndex: true, prefix: '' }
     };
   `,
   ts: `
@@ -39,7 +39,7 @@ export const CONFIG_TEMPLATES = {
 
     export default {
       app,
-      config: { showIndex: true, prefix: '' } // Default
+      config: { showIndex: true, prefix: '' }
     };
   `
 };
