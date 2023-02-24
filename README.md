@@ -27,7 +27,7 @@ Export the app (regardless of where you are declaring it)
 ```js
 //server.js
 
-export { app };
+module.exports = app;
 ```
 
 Pass your _app_ to the _configure_ function in config file
