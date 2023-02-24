@@ -35,7 +35,7 @@ Pass your _app_ to the _configure_ function in config file
 ```js
 //route-list.config.js
 
-import { app } from './replace-with-app-path';
+const app = require('./replace-with-app-path');
 
 module.exports = {
   app,
