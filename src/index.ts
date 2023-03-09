@@ -1,107 +1,52 @@
-#!/usr/bin/env node
-import fs from 'node:fs/promises';
+import { Table } from 'console-table-printer';
 import chalk from 'chalk';
-import { init } from './init';
-import path from 'path';
-import { exec } from 'node-exec-promise';
-import {
-  getConfig,
-  getConfigAbsoutePath,
-  getConfigExists,
-  getConfigTemplate
-} from './utils';
+import { getRoutes } from './utils';
+import { Column, type Config, type App } from './types';
 
-async function configure(): Promise<void> {
-  if (await getConfigExists()) {
-    console.info(
-      chalk.redBright('A configuration file already exists for your project.')
-    );
+export function configure(
+  app: App,
+  config: Config = { showIndex: true, prefix: '' }
+): void {
+  const columns = [
+    {
+      name: Column.Index,
+      title: chalk.cyan(Column.Index),
+      minLen: 15
+    },
+    {
+      name: Column.Route,
+      title: chalk.cyan(Column.Route),
+      minLen: 15
+    },
+    {
+      name: Column.Method,
+      title: chalk.cyan(Column.Method),
+      minLen: 15
+    }
+  ];
 
-    process.exit(1);
+  if (!config.showIndex) {
+    columns.shift();
   }
 
-  const configFilename = getConfigAbsoutePath();
+  const table = new Table({ columns });
 
-  await fs.writeFile(configFilename, getConfigTemplate(), {
-    encoding: 'utf-8'
+  const rows = getRoutes(app).map((item, index) => {
+    if (!config.showIndex) {
+      return {
+        [Column.Route]: `${config.prefix}${item.path}`.replace(/\/\//g, '/'),
+        [Column.Method]: item.method.toUpperCase()
+      };
+    }
+
+    return {
+      [Column.Index]: index,
+      [Column.Route]: `${config.prefix}${item.path}`.replace(/\/\//g, '/'),
+      [Column.Method]: item.method.toUpperCase()
+    };
   });
 
-  console.info(chalk.greenBright(`Config file created.\n`));
+  rows.forEach((item) => table.addRow(item));
 
-  console.info(
-    chalk.cyan(
-      `Please configure ${chalk.bold.whiteBright(
-        'app'
-      )} import in ${chalk.bold.whiteBright(configFilename)}`
-    )
-  );
+  table.printTable();
 }
-
-async function compileTsProject(): Promise<string> {
-  const tscPath = path.join(path.resolve(), 'node_modules/.bin/tsc');
-
-  if (!(await fs.stat(tscPath)))
-    throw new Error(`Please install typescript in your project`);
-
-  const buildDir = 'node_modules/express-route-list/project';
-
-  await exec(`${tscPath} --outDir ${buildDir} || rm -r ./${buildDir}`);
-
-  return path.resolve() + `/${buildDir}`;
-}
-
-async function run(): Promise<void> {
-  try {
-    const option = process.argv[2];
-
-    if (option === 'configure') {
-      await configure();
-
-      process.exit(1);
-    } else if (option !== undefined) {
-      console.info(
-        chalk.redBright(`${chalk.bold.redBright(option)} is an invalid option.`)
-      );
-
-      process.exit(1);
-    }
-
-    if (!(await getConfigExists())) {
-      console.info(
-        chalk.redBright(
-          `You do not have a valid configuration file, please use the ${chalk.bold.whiteBright(
-            'configure'
-          )} command.`
-        )
-      );
-
-      process.exit(1);
-    }
-
-    const routeListConfig = getConfig();
-
-    const { appPath, config } = routeListConfig;
-
-    let app: any;
-
-    if (routeListConfig.ts) {
-      const buildDir = await compileTsProject();
-
-      app = require(`${buildDir}/${appPath}`).default;
-    } else {
-      app = require(path.resolve() + `/${appPath}`);
-    }
-
-    init(app, config);
-  } catch (error: any) {
-    console.info(chalk.redBright(`ERROR: ${error.message}`));
-
-    console.info(
-      chalk.yellowBright(
-        'Did you remember to import the app in your config file?'
-      )
-    );
-  }
-}
-
-void run();

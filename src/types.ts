@@ -1,3 +1,5 @@
+export type App = any;
+
 export interface Route {
   path: string;
   method: keyof typeof Methods;
@@ -21,12 +23,6 @@ export enum Methods {
 export interface Config {
   showIndex?: boolean;
   prefix?: string;
-}
-
-export interface RouteListConfig {
-  appPath: string;
-  config: Config;
-  ts: boolean;
 }
 
 export const ALL_METHODS_COUNT = 34;

@@ -2,8 +2,8 @@ import { describe, it, vi, expect, afterEach } from 'vitest';
 import express3 from 'express3';
 import express4 from 'express4';
 import express5 from 'express5';
-import { init } from 'src/init';
 import ConsoleTablePrint from 'console-table-printer';
+import { configure } from 'src';
 
 const handler = (_: any, res: any): void => res.send('handled');
 
@@ -25,7 +25,7 @@ describe('Express 3', () => {
 
     app.get('/test', handler);
 
-    init(app);
+    configure(app);
 
     expect(addRow).toHaveBeenCalledTimes(1);
 
@@ -37,7 +37,7 @@ describe('Express 3', () => {
 
     app.all('/test', handler);
 
-    init(app);
+    configure(app);
 
     expect(addRow).toHaveBeenCalledTimes(1);
 
@@ -51,7 +51,7 @@ describe('Express 4', () => {
 
     app.get('/test', handler);
 
-    init(app);
+    configure(app);
 
     expect(addRow).toHaveBeenCalledTimes(1);
 
@@ -71,7 +71,7 @@ describe('Express 4', () => {
 
     app.use(router);
 
-    init(app);
+    configure(app);
 
     expect(addRow).toHaveBeenCalledTimes(2);
 
@@ -91,7 +91,7 @@ describe('Express 4', () => {
 
     app.use(router);
 
-    init(app);
+    configure(app);
 
     expect(addRow).toHaveBeenCalledTimes(2);
 
@@ -105,7 +105,7 @@ describe('Express 5', () => {
 
     app.get('/test', handler);
 
-    init(app, { showIndex: false, prefix: 'api/' });
+    configure(app, { showIndex: false, prefix: 'api/' });
 
     expect(addRow).toHaveBeenCalledTimes(1);
 
@@ -125,7 +125,7 @@ describe('Express 5', () => {
 
     app.use(router);
 
-    init(app);
+    configure(app);
 
     expect(addRow).toHaveBeenCalledTimes(2);
 
@@ -145,7 +145,7 @@ describe('Express 5', () => {
 
     app.use(router);
 
-    init(app);
+    configure(app);
 
     expect(addRow).toHaveBeenCalledTimes(2);
 

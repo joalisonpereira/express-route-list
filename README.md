@@ -1,5 +1,3 @@
-## Working in Progress 🚧
-
 # Express Route List
 
 > List routes for Express Framework
@@ -14,39 +12,32 @@
 npm install -D express-route-list
 ```
 
-## Configuration
+## Setup
 
-Use the follow command to generate the config file.
-
-```bash
-npx route-list configure
-```
+If you are using Typescript in project, read [Typescript setup](./docs/TSCONFIGURATION.md)
 
 Export the app (regardless of where you are declaring it)
 
 ```js
-//server.js
+//app.js
 
 module.exports = app;
 ```
 
-Pass your _app_ to the _configure_ function in config file
+Create a configuration file with this configs:
 
 ```js
-//route-list.config.js
+//route-list.js
+const { configure } = require('express-route-list');
+const app = require('./app');
 
-const app = require('./replace-with-app-path');
-
-module.exports = {
-  app,
-  config: { showIndex: false, prefix: '' } // Default
-};
+configure(app, { showIndex: true, prefix: '' });
 ```
 
-## Execute
+## Create script to execute
 
 ```bash
-npx route-list
+npm pkg set scripts.route-list="node route-list.js"
 ```
 
 ## Output Example

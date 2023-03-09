@@ -2,7 +2,6 @@ import {
   ALL_METHODS_COUNT,
   CONFIG_FILE_NAME,
   Methods,
-  type RouteListConfig,
   type Route
 } from './types';
 import fs from 'node:fs/promises';
@@ -94,23 +93,4 @@ export function getConfigAbsoutePath(): string {
 
 export async function getConfigExists(): Promise<boolean> {
   return await fileExists(getConfigAbsoutePath());
-}
-
-export function getConfigTemplate(): string {
-  return JSON.stringify(
-    {
-      appPath: './<<app-export-path>>',
-      config: {
-        showIndex: true,
-        prefix: ''
-      },
-      ts: true
-    },
-    null,
-    2
-  );
-}
-
-export function getConfig(): RouteListConfig {
-  return require(getConfigAbsoutePath());
 }

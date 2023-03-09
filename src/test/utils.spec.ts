@@ -6,10 +6,8 @@ import path from 'node:path';
 import { Methods } from 'src/types';
 import {
   fileExists,
-  getConfig,
   getConfigAbsoutePath,
   getConfigExists,
-  getConfigTemplate,
   getRoutes,
   pick
 } from 'src/utils';
@@ -95,19 +93,5 @@ describe('getConfigAbsoutePath', () => {
     const result = await getConfigExists();
 
     expect(result).toBe(false);
-  });
-});
-
-describe('getConfigTemplate', () => {
-  it('should get config template content', () => {
-    expect(getConfigTemplate()).toBeDefined();
-
-    expect(typeof getConfigTemplate()).toBe('string');
-  });
-});
-
-describe('getConfig', () => {
-  it('should get config content', () => {
-    expect(getConfig).toBeDefined();
   });
 });
