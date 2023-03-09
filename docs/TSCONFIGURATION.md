@@ -1,6 +1,6 @@
 ## Setup
 
-Export the app (regardless of where you are declaring it)
+Export the app (regardless of where you are declaring it).
 
 ```ts
 //app.ts

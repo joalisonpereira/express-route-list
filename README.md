@@ -16,7 +16,7 @@ npm install -D express-route-list
 
 If you are using Typescript in project, read [typescript setup](./docs/TSCONFIGURATION.md)
 
-Export the app (regardless of where you are declaring it)
+Export the app (regardless of where you are declaring it).
 
 ```js
 //app.js
@@ -35,6 +35,8 @@ configure(app, { showIndex: true, prefix: '' });
 ```
 
 ## Execute
+
+Create a script entry in package.json and run.
 
 ```bash
 npm pkg set scripts.route-list="node route-list.js"
