@@ -8,7 +8,7 @@ Export the app (regardless of where you are declaring it)
 export default app;
 ```
 
-Create a configuration file with this configs:
+Create a configuration file:
 
 ```ts
 //route-list.ts
@@ -28,12 +28,4 @@ npm pkg set scripts.route-list="tsx route-list.ts"
 
 ## Output Example
 
-![](./docs/output.png)
-
-## Why use this package?
-
-This package provides a quick way to easily visualize your application's routes, with a minimal configuration.
-
-## Author
-
-© 2023 - [Joalison Pereira](https://joalisonpereira.github.io/)
+![](./output.png)

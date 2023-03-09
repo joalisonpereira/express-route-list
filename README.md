@@ -14,7 +14,7 @@ npm install -D express-route-list
 
 ## Setup
 
-If you are using Typescript in project, read [Typescript setup](./docs/TSCONFIGURATION.md)
+If you are using Typescript in project, read [typescript setup](./docs/TSCONFIGURATION.md)
 
 Export the app (regardless of where you are declaring it)
 
@@ -24,7 +24,7 @@ Export the app (regardless of where you are declaring it)
 module.exports = app;
 ```
 
-Create a configuration file with this configs:
+Create a configuration file:
 
 ```js
 //route-list.js
