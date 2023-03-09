@@ -18,12 +18,16 @@ import app from './app';
 configure(app, { showIndex: true, prefix: '' });
 ```
 
-## Create script to execute
+## Execute
 
 You can use [tsx](https://www.npmjs.com/package/tsx) or [ts-node](https://www.npmjs.com/package/tsx) to execute this script.
 
 ```bash
 npm pkg set scripts.route-list="tsx route-list.ts"
+```
+
+```bash
+npx route-list
 ```
 
 ## Output Example

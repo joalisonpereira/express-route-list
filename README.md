@@ -34,10 +34,14 @@ const app = require('./app');
 configure(app, { showIndex: true, prefix: '' });
 ```
 
-## Create script to execute
+## Execute
 
 ```bash
 npm pkg set scripts.route-list="node route-list.js"
+```
+
+```bash
+npx route-list
 ```
 
 ## Output Example
