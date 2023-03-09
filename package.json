@@ -1,6 +1,6 @@
 {
   "name": "express-route-list",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "List routes for Express Framework",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -68,6 +68,6 @@
   "dependencies": {
     "chalk": "4.1.2",
     "console-table-printer": "^2.11.1",
-    "prompts": "2.4.2"
+    "node-exec-promise": "1.0.2"
   }
 }

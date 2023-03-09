@@ -23,23 +23,12 @@ export interface Config {
   prefix?: string;
 }
 
+export interface RouteListConfig {
+  appPath: string;
+  config: Config;
+  ts: boolean;
+}
+
 export const ALL_METHODS_COUNT = 34;
 
-export const CONFIG_TEMPLATES = {
-  js: `
-    const app = require('./replace-with-app-path');
-
-    module.exports = {
-      app,
-      config: { showIndex: true, prefix: '' }
-    };
-  `,
-  ts: `
-    import app from './replace-with-app-path';
-
-    export default {
-      app,
-      config: { showIndex: true, prefix: '' }
-    };
-  `
-};
+export const CONFIG_FILE_NAME = 'route-list.config.json';

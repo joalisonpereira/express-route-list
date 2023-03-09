@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 import fs from 'node:fs/promises';
 import chalk from 'chalk';
-import prompts from 'prompts';
-import { CONFIG_TEMPLATES } from './types';
 import { init } from './init';
-import { getConfigAbsoutePath, getConfigExists } from './utils';
+import path from 'path';
+import { exec } from 'node-exec-promise';
+import {
+  getConfig,
+  getConfigAbsoutePath,
+  getConfigExists,
+  getConfigTemplate
+} from './utils';
 
 async function configure(): Promise<void> {
   if (await getConfigExists()) {
@@ -15,22 +20,9 @@ async function configure(): Promise<void> {
     process.exit(1);
   }
 
-  const { value: isTs } = await prompts({
-    type: 'toggle',
-    name: 'value',
-    message: 'Your project uses Typescript?',
-    initial: true,
-    active: 'Y',
-    inactive: 'n'
-  });
+  const configFilename = getConfigAbsoutePath();
 
-  if (isTs === undefined) {
-    process.exit(1); // User not choose option
-  }
-
-  const configFilename = getConfigAbsoutePath(isTs);
-
-  await fs.writeFile(configFilename, CONFIG_TEMPLATES[isTs ? 'ts' : 'js'], {
+  await fs.writeFile(configFilename, getConfigTemplate(), {
     encoding: 'utf-8'
   });
 
@@ -45,20 +37,17 @@ async function configure(): Promise<void> {
   );
 }
 
-function getConfig(): any {
-  try {
-    const configTsPath = getConfigAbsoutePath('ts');
+async function compileTsProject(): Promise<string> {
+  const tscPath = path.join(path.resolve(), 'node_modules/.bin/tsc');
 
-    return require(configTsPath);
-  } catch (error) {
-    const configJsPath = getConfigAbsoutePath('js');
+  if (!(await fs.stat(tscPath)))
+    throw new Error(`Please install typescript in your project`);
 
-    try {
-      return require(configJsPath);
-    } catch (error) {
-      return null;
-    }
-  }
+  const buildDir = 'node_modules/express-route-list/project';
+
+  await exec(`${tscPath} --outDir ${buildDir} || rm -r ./${buildDir}`);
+
+  return path.resolve() + `/${buildDir}`;
 }
 
 async function run(): Promise<void> {
@@ -77,8 +66,6 @@ async function run(): Promise<void> {
       process.exit(1);
     }
 
-    const routeListConfig = getConfig();
-
     if (!(await getConfigExists())) {
       console.info(
         chalk.redBright(
@@ -91,7 +78,19 @@ async function run(): Promise<void> {
       process.exit(1);
     }
 
-    const { app, config } = routeListConfig?.default ?? routeListConfig;
+    const routeListConfig = getConfig();
+
+    const { appPath, config } = routeListConfig;
+
+    let app: any;
+
+    if (routeListConfig.ts) {
+      const buildDir = await compileTsProject();
+
+      app = require(`${buildDir}/${appPath}`).default;
+    } else {
+      app = require(path.resolve() + `/${appPath}`);
+    }
 
     init(app, config);
   } catch (error: any) {

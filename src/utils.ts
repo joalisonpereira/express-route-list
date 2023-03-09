@@ -1,4 +1,10 @@
-import { ALL_METHODS_COUNT, Methods, type Route } from './types';
+import {
+  ALL_METHODS_COUNT,
+  CONFIG_FILE_NAME,
+  Methods,
+  type RouteListConfig,
+  type Route
+} from './types';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -82,22 +88,29 @@ export async function fileExists(path: string): Promise<boolean> {
   }
 }
 
-export function getConfigFilename(type: 'js' | 'ts'): string {
-  return 'route-list.config.[ext]'.replace(
-    '[ext]',
-    type === 'ts' ? 'ts' : 'js'
-  );
-}
-
-export function getConfigAbsoutePath(type: 'js' | 'ts'): string {
-  return path.resolve() + '/' + getConfigFilename(type);
+export function getConfigAbsoutePath(): string {
+  return path.resolve() + `/${CONFIG_FILE_NAME}`;
 }
 
 export async function getConfigExists(): Promise<boolean> {
-  const [configJs, configTs] = await Promise.all([
-    fileExists(getConfigAbsoutePath('js')),
-    fileExists(getConfigAbsoutePath('ts'))
-  ]);
+  return await fileExists(getConfigAbsoutePath());
+}
 
-  return configJs || configTs;
+export function getConfigTemplate(): string {
+  return JSON.stringify(
+    {
+      appPath: './<<app-export-path>>',
+      config: {
+        showIndex: true,
+        prefix: ''
+      },
+      ts: true
+    },
+    null,
+    2
+  );
+}
+
+export function getConfig(): RouteListConfig {
+  return require(getConfigAbsoutePath());
 }

@@ -3,15 +3,16 @@ import express3 from 'express3';
 import express4 from 'express4';
 import express5 from 'express5';
 import path from 'node:path';
+import { Methods } from 'src/types';
 import {
   fileExists,
+  getConfig,
   getConfigAbsoutePath,
   getConfigExists,
-  getConfigFilename,
+  getConfigTemplate,
   getRoutes,
   pick
 } from 'src/utils';
-import { Methods } from 'src/types';
 
 const handler = (_: any, res: any): void => res.send('handled');
 
@@ -81,31 +82,11 @@ describe('fileExists', () => {
   });
 });
 
-describe('getConfigFilename', () => {
-  it('should return name for js config file', async () => {
-    const result = getConfigFilename('js');
-
-    expect(result.endsWith('.js')).toBe(true);
-  });
-
-  it('should return name for ts config file', async () => {
-    const result = getConfigFilename('ts');
-
-    expect(result.endsWith('.ts')).toBe(true);
-  });
-});
-
 describe('getConfigAbsoutePath', () => {
   it('should return absolute path for js config file', async () => {
-    const result = getConfigAbsoutePath('js');
+    const result = getConfigAbsoutePath();
 
-    expect(result.endsWith('.js')).toBe(true);
-  });
-
-  it('should return absolute path for ts config file', async () => {
-    const result = getConfigAbsoutePath('ts');
-
-    expect(result.endsWith('.ts')).toBe(true);
+    expect(typeof result).toBe('string');
   });
 });
 
@@ -114,5 +95,19 @@ describe('getConfigAbsoutePath', () => {
     const result = await getConfigExists();
 
     expect(result).toBe(false);
+  });
+});
+
+describe('getConfigTemplate', () => {
+  it('should get config template content', () => {
+    expect(getConfigTemplate()).toBeDefined();
+
+    expect(typeof getConfigTemplate()).toBe('string');
+  });
+});
+
+describe('getConfig', () => {
+  it('should get config content', () => {
+    expect(getConfig).toBeDefined();
   });
 });

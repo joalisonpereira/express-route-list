@@ -1,12 +1,10 @@
-import { CONFIG_TEMPLATES } from 'src/types';
+import { ALL_METHODS_COUNT, CONFIG_FILE_NAME } from 'src/types';
 import { describe, expect, it } from 'vitest';
 
-describe('CONFIG_TEMPLATES', () => {
+describe('Types', () => {
   it('should test config templates var', () => {
-    expect(CONFIG_TEMPLATES).toBeDefined();
+    expect(ALL_METHODS_COUNT).toBeDefined();
 
-    expect(CONFIG_TEMPLATES.js).toBeDefined();
-
-    expect(CONFIG_TEMPLATES.ts).toBeDefined();
+    expect(CONFIG_FILE_NAME).toBeDefined();
   });
 });
