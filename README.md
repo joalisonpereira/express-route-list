@@ -43,7 +43,7 @@ npm pkg set scripts.route-list="node route-list.js"
 ```
 
 ```bash
-npx route-list
+npm run route-list
 ```
 
 ## Output Example

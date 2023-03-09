@@ -27,7 +27,7 @@ npm pkg set scripts.route-list="tsx route-list.ts"
 ```
 
 ```bash
-npx route-list
+npm run route-list
 ```
 
 ## Output Example
