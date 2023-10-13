@@ -9,7 +9,7 @@
 ## Install
 
 ```bash
-npm install -D express-route-list
+npm i -D express-route-list
 ```
 
 ## Setup
