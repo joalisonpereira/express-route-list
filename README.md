@@ -4,8 +4,6 @@
 
 ![](./docs/badge-statements.svg) ![](./docs/badge-functions.svg) ![](./docs/badge-lines.svg) ![](./docs/badge-branches.svg)
 
-[license-url]: https://opensource.org/licenses/MIT
-
 ## Install
 
 ```bash
