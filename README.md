@@ -53,7 +53,3 @@ npm run route-list
 ## Why use this package?
 
 This package provides a quick way to easily visualize your application's routes, with a minimal configuration.
-
-## Author
-
-© 2023 - [Joalison Pereira](https://joalisonpereira.dev/)
